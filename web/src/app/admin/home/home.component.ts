@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
   deleteSheduling(shedulingMedical: any) {
     this.shedulingAppoimentService.remove(shedulingMedical.id).subscribe(res => {
       this.alertService.success('Removed with successful!');
+      this.search();
     }, error => ( this.error(error)));
   }
 
