@@ -1,0 +1,4 @@
+<div *ngIf="message">
+    <ngb-alert [type]="message.type" (close)="close()">{{ message.text }}</ngb-alert>
+</div>
+

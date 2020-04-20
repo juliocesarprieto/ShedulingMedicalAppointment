@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <H1>Doctors</H1>
+    </div>
+
+    <app-alert></app-alert>
+
+    <div class="">
+        <form>
+            <div class="form-group form-inline">
+                <input class="form-control" [(ngModel)]="filter" name="filter" type="text" (ngModelChange)="search($event)" placeholder="Search by name or email"/>
+                <a routerLink="/doctors/add" routerLinkActive="active" class="btn btn-primary">Add</a>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-sm" *ngFor="let doctor of doctors">
+              <td>{{doctor.name}}</td>
+              <td>{{doctor.email}}</td>
+              <td>{{doctor.phone}}</td>
+              <td><a routerLink="/doctors/{{doctor.id}}/edit" class="btn btn-success btn-sm">Edit</a>
+                   <a class="btn btn-danger btn-sm" (click)="deleteDoctor(doctor)">Delete</a>
+              </td>
+            </tr>
+            <div *ngIf="totalElements === 0">
+                <h6>Result not found!</h6>
+            </div>
+            </tbody>
+          </table>
+    </div>
+   
+</div>

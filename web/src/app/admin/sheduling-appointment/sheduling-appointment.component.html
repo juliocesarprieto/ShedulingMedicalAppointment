@@ -1,0 +1,47 @@
+<h3>Sheduling appointment</h3>
+
+<div class="container">
+    <form class="form-sining">
+        <div class="form-group">
+            <label for="descritionInput">Description</label>
+            <input type="text"  [(ngModel)]="description" name="description" class="form-control" id="descriptionInput">     
+        </div>
+
+        <div class="form-group">
+            <label for="typeahead-basic">Doctor</label>
+            <input id="typeahead-basic" type="text" class="form-control" 
+                [(ngModel)]="model"
+                name="model"
+                [ngbTypeahead]="search" 
+                [resultFormatter]="resultFormatBandListValue"
+                [inputFormatter]="inputFormatBandListValue"
+                placeholder="Doctor Name"
+            />
+        </div>
+
+        <div class="form=group">
+            <label >Date</label>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd"
+                            name="dp" [(ngModel)]="modelDatePicker" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>      
+              <ng-template #footerTemplate>
+                <hr class="my-0">
+                <button class="btn btn-primary btn-sm m-2 float-left" (click)="modelDatePicker = today; d.close()">Today</button>
+                <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+              </ng-template>
+        </div>
+        <div>
+            <button type="button" (click)="actionSave()" class="btn btn-primary">Save</button>
+        </div>        
+    </form>
+</div>
+
+
