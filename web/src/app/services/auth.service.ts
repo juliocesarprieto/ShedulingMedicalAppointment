@@ -35,15 +35,14 @@ export class AuthService {
         };
 
         this.storageService.setLocalUser(user);
+        this.dataSharedService.isUserLoggedIn.next(true);
     }
 
     isAuthenticated(): boolean {
         const token = localStorage.getItem('localUser');
-        if (token !== 'null') {
-            console.log('PASEI AQUI DENTRO', JSON.parse(token).token);
+        if (token !== null) {
             return !this.jwtHelper.isTokenExpired(JSON.parse(token).token);
         }
-        console.log('PASEI AQUI');
         return false;
     }
 

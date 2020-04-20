@@ -9,6 +9,7 @@ import br.com.scheduling.repositories.ShedulingAppointmentRepository;
 import br.com.scheduling.repositories.UserRepository;
 import br.com.services.UserSystemUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,16 @@ public class ShedulingAppointmentController {
     private UserSystemUtils userSystemUtils;
 
     @GetMapping("/")
-    public ResponseEntity<List<ShedulingAppointment>> findAllByUserId(@RequestParam("filter") String filter, Pageable pageable) {
+    public Page<ShedulingAppointment> findAllByUserId(@RequestParam(required = false) String filter, Pageable pageable) {
 
         User user = userSystemUtils.userDetail();
 
-//        List<ShedulingAppoiment> shedulingAppoiments = shedulingAppoimentRepository.findAllByUserIdOrderByDate(id);
 
-        return ResponseEntity.ok().build();
+        Page<ShedulingAppointment> page = filter.isEmpty()
+                ? shedulingAppointmentRepository.findAllByUser(user, pageable)
+                : shedulingAppointmentRepository.findAllByFilterOrderByDate( user,"%" + filter + "%", pageable);
+
+        return page;
     }
 
     @PostMapping("/")

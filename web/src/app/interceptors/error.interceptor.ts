@@ -27,7 +27,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                     } || err.statusText;
                 }
 
-                console.log('MOSTRANDO ERROR ', error);
 
                 return throwError(error);
             }));

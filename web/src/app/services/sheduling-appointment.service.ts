@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ShedulingAppointment } from '../models';
+import { environment as env } from './../../environments/environment';
 
 @Injectable()
 export class ShedulingAppointmentService {
-    apiUrl = 'http://localhost:8080/sheduling_appointments/';
+    apiUrl = env.apiUrl + '/sheduling_appointments/';
 
     constructor(private http: HttpClient) {}
 
