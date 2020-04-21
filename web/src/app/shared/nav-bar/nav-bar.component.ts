@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataSharedService } from '../data-shared.service';
 import { AuthService } from 'src/app/services';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,15 +12,17 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  @Input() isUserLogged: boolean;
+  hiddenBar: boolean = false;
 
   constructor(
     private router: Router,
     private dataSharedService: DataSharedService,
     private authService: AuthService) {
-    this.dataSharedService.isUserLoggedIn.subscribe(value => {
-      this.isUserLogged = authService.isAuthenticated();
+    this.dataSharedService.isUserLogged.subscribe(value => {
+      this.hiddenBar = value;
      });
+
+    this.hiddenBar = authService.isAuthenticated() ? true : false;
   }
 
   ngOnInit() {
@@ -27,9 +30,8 @@ export class NavBarComponent implements OnInit {
 
   logout(event: any) {
     this.authService.logout();
-    this.dataSharedService.isUserLoggedIn.next(false);
-    this.isUserLogged = false;
+    this.dataSharedService.isUserLogged.next(false);
+    this.hiddenBar = false;
     this.router.navigate(['/']);
-}
-
+  }
 }

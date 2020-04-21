@@ -3,13 +3,5 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataSharedService {
-  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private messageSource = new BehaviorSubject('default message');
-  currentMessage = this.messageSource.asObservable();
-
-  constructor() {}
-
-  changeMessage(message: string) {
-    this.messageSource.next(message);
-  }
+  public isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 }

@@ -39,17 +39,14 @@ export class SinginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.form.value).subscribe(res => {
-        this.router.navigate(['/home']);
         this.authService.successfulLogin(res.headers.get('Authorization'));
+        this.dataSharedService.isUserLogged.next(true);
+        this.router.navigate(['/home']);
     }, error => {this.loginError(error); });
   }
 
   loginError(error: any) {
     this.alertService.error(error.message);
-  }
-
-  sendMessage() {
-    this.dataSharedService.isUserLoggedIn.next(false);
   }
 
 }

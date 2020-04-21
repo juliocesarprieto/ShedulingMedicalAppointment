@@ -4,7 +4,6 @@ import { Credentials } from '../models';
 import { LocalUser } from '../models/local-user';
 import { StorageService } from './storage.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { DataSharedService } from '../shared/data-shared.service';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +13,7 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        public storageService: StorageService,
-        private dataSharedService: DataSharedService) {}
+        public storageService: StorageService) {}
 
     login(credential: Credentials ) {
         return this.http.post(
@@ -35,7 +33,6 @@ export class AuthService {
         };
 
         this.storageService.setLocalUser(user);
-        this.dataSharedService.isUserLoggedIn.next(true);
     }
 
     isAuthenticated(): boolean {

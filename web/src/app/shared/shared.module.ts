@@ -5,7 +5,6 @@ import { DoctorService, UserService, AlertService, AuthService, ShedulingAppoint
 import { AlertComponent } from './alert';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { DataSharedService } from './data-shared.service';
 import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 
@@ -26,7 +25,6 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
         UserService,
         AlertService,
         AuthService,
-        DataSharedService,
         ShedulingAppointmentService
     ],
     exports: [

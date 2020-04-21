@@ -11,6 +11,7 @@ import { UserService } from './services';
 import { AppRoutingModule } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { StorageService } from './services/storage.service';
+import { DataSharedService } from './shared/data-shared.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { StorageService } from './services/storage.service';
     UserService,
     StorageService,
     AuthGuardService,
+    DataSharedService,
     JwtInterceptorProvider,
     ErrorInterceptorProvider,
   ],
