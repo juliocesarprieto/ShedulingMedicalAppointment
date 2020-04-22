@@ -1,27 +1,39 @@
-<div class="container">    
-    <div *ngIf="editMode"><h1>Edit Doctor</h1></div>
-    <div *ngIf="!editMode"><h1>New Doctor</h1></div>
+<div class="container">
 
     <app-alert></app-alert>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="nameId">Name</label>
-            <input type="text" class="form-control" formControlName="name">
+    
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="d-flex title-page">
+                <h3 *ngIf="editMode">Edit Doctor</h3>
+                <h3 *ngIf="!editMode">New Doctor</h3>
+            </div>
+    
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="nameId">Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group">
+                  <label for="emailId">Email address</label>
+                  <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="phoneId">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone">
+                </div>
+                <div class="d-flex">
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    <div class="ml-auto p-2">
+                        <a routerLink="/doctors" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </div>
+              </form>
         </div>
-        <div class="form-group">
-          <label for="emailId">Email address</label>
-          <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="phoneId">Phone</label>
-            <input type="text" class="form-control" formControlName="phone">
-        </div>
-        <div class="row">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a routerLink="/doctors" class="btn btn-light">Cancel</a>
-        </div>
-      </form>
+        <div class="col-2"></div>
+    </div>
 </div>
-
