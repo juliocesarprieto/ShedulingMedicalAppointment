@@ -10,15 +10,25 @@
       <div class="form-group">
         <label for="nameInput">Name</label>
         <input type="text" class="form-control" id="nameInput" formControlName="name">
+        <div *ngIf="submitted && form.controls.name.errors" class="invalid-required">
+          <span>Name is required</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="emailInput">Email</label>
-        <input type="email" formControlName="email" id="emailInput" class="form-control" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <input type="email" formControlName="email" id="emailInput" class="form-control">
+        <div *ngIf="submitted && form.controls.email.errors" class="invalid-required">
+          <span *ngIf="form.controls.email.errors.required">Email is required</span>
+          <span *ngIf="form.controls.email.errors.pattern">Email is not valid</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
         <input type="password" class="form-control" id="passwordInput" formControlName="password">
+        <div *ngIf="submitted && form.controls.password.errors" class="invalid-required">
+          <span *ngIf="form.controls.password.errors.required">Password is required</span>
+          <span *ngIf="form.controls.password.errors.minlength">Minimun character length (3) is not valid</span>
+        </div>
       </div>
       <div class="d-flex">
         <div class="p-2">

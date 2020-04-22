@@ -13,6 +13,7 @@ export class SingupComponent implements OnInit {
 
   form: FormGroup;
   user = new User();
+  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,26 +24,34 @@ export class SingupComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       password: ['',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5)
-        ]),
-      ],
-      email: ['', Validators.compose([
+                Validators.compose([
                 Validators.required,
-                Validators.pattern(
-                    /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)$/i
-                )]),
+                Validators.minLength(3)
+            ]),
+      ],
+      email: ['',
+              Validators.compose([
+              Validators.required,
+              Validators.pattern(
+                  /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)$/i
+            )]),
       ],
       name: ['',
-        Validators.compose([
-          Validators.required
-        ])
+            Validators.compose([
+            Validators.required
+          ])
        ]
     });
   }
 
   onSubmit() {
+
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+
     this.userService.register(this.form.value).subscribe(res => {
       this.router.navigate(['/'], { skipLocationChange: true });
       this.saveSuccess();
