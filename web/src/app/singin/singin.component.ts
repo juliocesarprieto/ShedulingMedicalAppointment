@@ -12,6 +12,7 @@ import { DataSharedService } from '../shared/data-shared.service';
 export class SinginComponent implements OnInit {
 
   form: FormGroup;
+  submitted = false;
 
   constructor(
         private formBuilder: FormBuilder,
@@ -38,6 +39,10 @@ export class SinginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+  }
     this.authService.login(this.form.value).subscribe(res => {
         this.authService.successfulLogin(res.headers.get('Authorization'));
         this.dataSharedService.isUserLogged.next(true);
