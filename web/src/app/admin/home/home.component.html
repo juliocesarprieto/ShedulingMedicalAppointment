@@ -1,41 +1,37 @@
 <div class="container">
-    <div class="row">
-        <H1>Sheduling Medical </H1>
+    <div class="d-flex title-page">
+        <H3>Sheduling Medical</H3>
     </div>
 
-    <!-- <app-alert></app-alert> -->
-
-    <div class="">
-        <form>
-            <div class="form-group form-inline">
-                <input class="form-control" [(ngModel)]="filter" name="filter" type="text" (ngModelChange)="search($event)" placeholder="Search by name or description"/>
-            </div>
-        </form>
+    <div class="d-flex">
+        <div class="p-2">
+            <input class="form-control" [(ngModel)]="filter" name="filter" type="text" (ngModelChange)="search($event)" placeholder="Search by name or description"/>
+        </div>
     </div>
-    <div>
+    <div class="content-table">
         <table class="table table-striped">
             <thead>
-            <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Doctor</th>
-              <th scope="col">Date</th>
-              <th>Actions</th>
-            </tr>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Date</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
-            <tr class="table-sm" *ngFor="let shedulingMedical of shedulingsAppointments">
-              <td>{{shedulingMedical.description}}</td>
-              <td>{{shedulingMedical.doctor.name}}</td>
-              <td>{{shedulingMedical.date | date: "dd/MM/yyyy"}}</td>
-              <td>
-                  <a class="btn btn-danger btn-sm" (click)="deleteSheduling(shedulingMedical)">Delete</a>
-              </td>
-            </tr>
-            <div *ngIf="totalElements === 0">
-                <h6>Result not found!</h6>
-            </div>
+                <tr class="table-sm" *ngFor="let shedulingMedical of shedulingsAppointments">
+                    <td>{{shedulingMedical.description}}</td>
+                    <td>{{shedulingMedical.doctor.name}}</td>
+                    <td>{{shedulingMedical.date | date: "dd/MM/yyyy"}}</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" (click)="deleteSheduling(shedulingMedical)">Delete</a>
+                    </td>
+                </tr>
+                <div *ngIf="totalElements === 0">
+                    <h6>Result not found!</h6>
+                </div>
             </tbody>
-          </table>
+        </table>
     </div>
    
 </div>
