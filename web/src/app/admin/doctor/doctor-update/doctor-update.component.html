@@ -14,11 +14,17 @@
                 <div class="form-group">
                     <label for="nameId">Name</label>
                     <input type="text" class="form-control" formControlName="name">
+                    <div *ngIf="submitted && form.controls.name.errors" class="invalid-required">
+                        <span *ngIf="form.controls.name.errors.required">Name is required</span>
+                      </div>
                 </div>
                 <div class="form-group">
                   <label for="emailId">Email address</label>
                   <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <div *ngIf="submitted && form.controls.email.errors" class="invalid-required">
+                    <span *ngIf="form.controls.email.errors.required">Email is required</span>
+                    <span *ngIf="form.controls.email.errors.pattern">Email is not valid</span>
+                  </div>
                 </div>
                 <div class="form-group">
                     <label for="phoneId">Phone</label>

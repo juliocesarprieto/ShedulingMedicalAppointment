@@ -17,6 +17,7 @@ export class DoctorUpdateComponent implements OnInit {
   doctorId: any;
   doctor: any;
   form: FormGroup;
+  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,6 +66,11 @@ export class DoctorUpdateComponent implements OnInit {
    }
 
   onSubmit() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+
     if (this.editMode) {
       const doctorUpdate = this.form.value;
       doctorUpdate.id = this.doctor.id;
