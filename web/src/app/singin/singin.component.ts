@@ -26,7 +26,7 @@ export class SinginComponent implements OnInit {
       password: ['',
           Validators.compose([
             Validators.required,
-            Validators.minLength(5)
+            Validators.minLength(3)
         ]),
       ],
       email: ['', Validators.compose([
@@ -42,7 +42,8 @@ export class SinginComponent implements OnInit {
     this.submitted = true;
     if (this.form.invalid) {
       return;
-  }
+    }
+    console.log('sdaksjdkasdjjsd');
     this.authService.login(this.form.value).subscribe(res => {
         this.authService.successfulLogin(res.headers.get('Authorization'));
         this.dataSharedService.isUserLogged.next(true);

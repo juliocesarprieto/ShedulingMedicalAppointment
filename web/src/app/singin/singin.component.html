@@ -19,6 +19,7 @@
       <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" required>
       <div *ngIf="submitted && form.controls.password.errors" class="invalid-required">
         <span *ngIf="form.controls.password.errors.required">Password is required</span>
+        <span *ngIf="form.controls.password.errors.minlength">Minimun character length (3) is not valid</span>
       </div>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
